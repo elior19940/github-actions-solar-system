@@ -40,6 +40,7 @@ jobs:
 
         - name: Cache NPM dependencies
           uses: actions/cache@v6.1.0
+          with:
             key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
             path: ~/.npm
     
