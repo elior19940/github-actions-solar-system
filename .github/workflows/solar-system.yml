@@ -22,8 +22,8 @@ jobs:
 
         env:
           MONGO_URI: mongodb://localhost:27017/superData
-          MONGO_USERNAME: no-prod-user
-          MONGO_PASSWORD: no-prod-password
+          MONGO_USERNAME: non-prod-user
+          MONGO_PASSWORD: non-prod-password
         strategy:
           matrix:
             nodejs_version: [18, 20]
@@ -53,15 +53,26 @@ jobs:
 
     code-coverage:
         name: code-coverage
+        container:
+          image: node:18
+        services:
+          mongodb:
+            image: siddharth67/mongo-db:non-prod
+            options:
+              --name mongo
+        env:
+          MONGO_URI: mongodb://mongo:27017/superData
+          MONGO_USERNAME: non-prod-user
+          MONGO_PASSWORD: non-prod-password
         runs-on: ubuntu-latest
         steps:
         - name: Checkout Repository
           uses: actions/checkout@v4
 
-        - name: Setup NodeJS Version
-          uses: actions/setup-node@v4
-          with:
-            node-version: 18
+        # - name: Setup NodeJS Version
+        #   uses: actions/setup-node@v4
+        #   with:
+        #     node-version: 18
 
         - name: Install Dependencies
           run: npm install
