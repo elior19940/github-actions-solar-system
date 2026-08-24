@@ -200,11 +200,7 @@ jobs:
         #   run: |
         #     cat kubernetes/development/*.yaml
 
-        # - name: Deploy To Dev Env
-        #   run: |
-        #     kubectl apply -f kubernetes/development
-          
-        # - name: Create MongoDB Secret
+           # - name: Create MongoDB Secret
         #   run: |
         #     kubectl -n ${{ vars.NAMESPACE }} create secret generic mongo-db-creds \
         #       --from-literal=MONGO_URI=${{ env.MONGO_URI }} \
@@ -214,3 +210,8 @@ jobs:
         #       --dry-run=client \
         #       -o yaml | kubectl apply -f -
   
+        # - name: Deploy To Dev Env
+        #   run: |
+        #     kubectl apply -f kubernetes/development
+          
+     
