@@ -98,8 +98,6 @@ jobs:
             retention-days: 5
 
     docker:
-
-
       permissions:
         packages: write
       needs: [unit-testing, code-coverage]
@@ -157,7 +155,9 @@ jobs:
 
     dev-deploy:
       name: dev-deploy
-      needs: [docker]
+      needs: docker
+      # outputs:
+      #   APP_INGRESS_URL: ${{ steps.set-ingress-host-address.outputs.APP_INGRESS_HOST }}
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repository
@@ -200,7 +200,7 @@ jobs:
         #   run: |
         #     cat kubernetes/development/*.yaml
 
-           # - name: Create MongoDB Secret
+        # - name: Create MongoDB Secret
         #   run: |
         #     kubectl -n ${{ vars.NAMESPACE }} create secret generic mongo-db-creds \
         #       --from-literal=MONGO_URI=${{ env.MONGO_URI }} \
@@ -213,5 +213,21 @@ jobs:
         # - name: Deploy To Dev Env
         #   run: |
         #     kubectl apply -f kubernetes/development
+
+        # - name: Set App Ingress Host URL
+            # id: set-ingress-host-address
+            # run: |
+            #   echo "APP_INGRESS_HOST=$(kubectl -n ${{ vars.NAMESPACE }} get ingress -o jsonpath "{.items[0].spec.tls[0]}")" >> GITHUB_OUTPUT
           
-     
+    # integration-testing:
+    #   name: Dev integration-testing
+    #   needs: dev-deploy
+    #   runs-on: ubuntu-latest
+    #   steps:
+    #     - name: Test URL Output using Curl and JQ
+    #       env:
+              URL: ${{ needs.dev-deploy.outputs.APP_INGRESS_URL }}
+    #       run: |
+    #         echo URL: ${{ env.APP_INGRESS_HOST }}
+    #         echo "---------------------------------"
+    #         curl https://${{ env.OUTPUT }}/live -s -k | jq -r .status | grep -i live
