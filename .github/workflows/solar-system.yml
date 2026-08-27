@@ -15,7 +15,7 @@ jobs:
     unit-testing:
         name: Unit Testing
         container:
-          image: node:20
+          image: node:20   
         services:
           mongodb:
             image: siddharth67/mongo-db:non-prod
