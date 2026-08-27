@@ -47,7 +47,7 @@ jobs:
             key: '${{ runner.os }}-node-modules-${{ hashFiles(''package-lock.json'') }}'
             path: ~/.npm
     
-        - name: Install Dependencies
+        - name: Install Dependencies 
           run: npm install
     
         - name: Unit Testing
