@@ -113,16 +113,16 @@ jobs:
         with:
           name: Code-Coverage-Result
 
-    - name: Merge Test Files
-      run: |
-        ls -ltr
-        mkdir reports-${{ github.sha }}
-        mv cobertura-coverage.xml reports-${{ github.sha }}/
-        mv test-results.xml reports-${{ github.sha }}/
-        ls -ltr reports-${{ github.sha }}/
+      - name: Merge Test Files
+        run: |
+          ls -ltr
+          mkdir reports-${{ github.sha }}
+          mv cobertura-coverage.xml reports-${{ github.sha }}/
+          mv test-results.xml reports-${{ github.sha }}/
+          ls -ltr reports-${{ github.sha }}/
 
-    - name: Upload to AWS S3
-      runs: echo "Uploading......."
+      - name: Upload to AWS S3
+        run: echo "Uploading......."
 
     docker:
       permissions: 
