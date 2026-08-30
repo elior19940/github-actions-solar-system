@@ -108,10 +108,10 @@ jobs:
         with:
           name: Mocha-Test-Result
 
-    - name: Download Code Coverage Artifact
-      uses: actions/download-artifact@v8.0.1
-      with:
-        name: Code-Coverage-Result
+      - name: Download Code Coverage Artifact
+        uses: actions/download-artifact@v8.0.1
+        with:
+          name: Code-Coverage-Result
 
     - name: Merge Test Files
       run: |
