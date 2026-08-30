@@ -21,13 +21,14 @@ on:
           default: developtment
           required: true
           type: string
+    outputs:
+      name: application-url:
+        value: ${{ jobs.reuse-deploy.outputs.APP_INGRESS_URL }}
     secrets:
         # k8s-kubeconfig:
         #     required: true
         mongodb-password:
             required: true
-
-
 jobs:
   reuse-deploy:
     environment:
