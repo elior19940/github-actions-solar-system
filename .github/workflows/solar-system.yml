@@ -157,7 +157,7 @@ jobs:
       if: contains(github.ref, 'feature/')
       name: dev-deploy
       needs: docker
-      uses: .github/workflows/reuse-deployment.yml@feature/workflow
+      uses: ./.github/workflows/reuse-deployment.yml
    
     # dev-integration-testing:
     # if: contains(github.ref, 'feature/')
