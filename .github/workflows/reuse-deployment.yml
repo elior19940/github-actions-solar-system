@@ -22,8 +22,8 @@ on:
           required: true
           type: string
     outputs:
-        name: application-url:
-            value: "${{ jobs.reuse-deploy.outputs.APP_INGRESS_URL }}""
+      application-url:
+            value: "${{ jobs.reuse-deploy.outputs.APP_INGRESS_URL }}"
     secrets:
         # k8s-kubeconfig:
         #     required: true
