@@ -2,8 +2,8 @@ name: 'NPM Custom Action'
 description: 'Installing and Caching NPM Packages
 inputs:
   path-of-folder: #id of input
-  description: 'the path to cache'
-  required: true
+   description: 'the path to cache'
+   required: true
 runs:
   using: "composite"
   steps:
