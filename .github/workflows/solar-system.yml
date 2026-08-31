@@ -41,10 +41,10 @@ jobs:
       #   with:
       #     node-version: ${{ matrix.nodejs_version }}
 
-     - name: Composite Action - Cache install NPM Packages
-       uses: ./.github/custom-actions/npm-action
-       with:
-        path-of-folder: ~/.npm
+      - name: Composite Action - Cache install NPM Packages
+        uses: ./.github/custom-actions/npm-action
+        with:
+         path-of-folder: ~/.npm
     
       - name: Unit Testing
         run: npm test
