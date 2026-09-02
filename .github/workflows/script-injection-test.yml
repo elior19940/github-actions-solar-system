@@ -1,5 +1,6 @@
 name: Label Issues (Script Injection)
 on:
+  workflow_dispatch:
   issues:
     types:
       - opened
